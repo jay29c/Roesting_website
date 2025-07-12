@@ -1,6 +1,4 @@
-
 import { useState } from "react";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui";
 
 // Dummy data for coffee products
 const coffeeProducts = [
@@ -39,14 +37,15 @@ function EnhancedCoffeeWebsite() {
       <main className="container mx-auto py-12 px-6">
         <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
           {coffeeProducts.map((product) => (
-            <Card
+            <div
               key={product.id}
               className={`bg-white text-stone-800 rounded-2xl overflow-hidden shadow-xl transition-all duration-500 ease-in-out
                 ${hoveredItem === product.id ? "transform -translate-y-4 scale-105 shadow-2xl ring-4 ring-amber-400/50" : "shadow-md hover:shadow-lg"}`}
               onMouseEnter={() => setHoveredItem(product.id)}
               onMouseLeave={() => setHoveredItem(null)}
             >
-              <CardHeader className="p-0 relative">
+              {/* Card Header */}
+              <div className="p-0 relative">
                 <div className="relative overflow-hidden h-52">
                   <img
                     src={product.image}
@@ -56,19 +55,22 @@ function EnhancedCoffeeWebsite() {
                       transform: hoveredItem === product.id ? "scale(1.1)" : "scale(1)",
                     }}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div> {/* Dark overlay for depth */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                 </div>
-              </CardHeader>
-              <CardContent className="p-6">
-                <CardTitle className="text-2xl font-bold mb-2 text-amber-900">{product.name}</CardTitle>
-                <CardDescription className="text-stone-600 mb-4 text-base leading-relaxed">{product.description}</CardDescription>
+              </div>
+              
+              {/* Card Content */}
+              <div className="p-6">
+                <h3 className="text-2xl font-bold mb-2 text-amber-900">{product.name}</h3>
+                <p className="text-stone-600 mb-4 text-base leading-relaxed">{product.description}</p>
                 <div className="text-2xl font-extrabold text-amber-700 flex items-center justify-between">
                   <span>${product.price.toFixed(2)}</span>
-                  {/* Subtle price tag effect */}
                   <span className="bg-amber-100 text-amber-800 text-sm px-3 py-1 rounded-full shadow-inner">Premium</span>
                 </div>
-              </CardContent>
-              <CardFooter className="p-6 pt-0">
+              </div>
+              
+              {/* Card Footer */}
+              <div className="p-6 pt-0">
                 <button
                   className={`w-full py-3 rounded-full font-bold text-lg transition-all duration-300 ease-in-out transform
                     ${
@@ -80,8 +82,8 @@ function EnhancedCoffeeWebsite() {
                 >
                   Add to Cart
                 </button>
-              </CardFooter>
-            </Card>
+              </div>
+            </div>
           ))}
         </section>
       </main>
@@ -97,4 +99,3 @@ function EnhancedCoffeeWebsite() {
 }
 
 export default EnhancedCoffeeWebsite;
-
